@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "minigrid-opt"
+version = "0.1.0"
+description = "Deterministic hybrid Solar PV + LiFePO4/Lead-Acid battery cycle-life & diesel backup dispatch optimizer with tiered critical-load shedding for rural clinics, schools, and cold-rooms."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [
+    { name = "Akandwanaho Ivan Alvin", email = "codesphereinnovationz@gmail.com" },
+]
+keywords = [
+    "microgrid",
+    "solar",
+    "battery-storage",
+    "lifepo4",
+    "renewable-energy",
+    "energy-efficiency",
+    "dispatch",
+    "off-grid",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.8.0",
+    "mypy>=1.11.0",
+]
+
+[project.scripts]
+minigrid-opt = "minigrid_opt.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/codesphere-u/minigrid-opt"
+Repository = "https://github.com/codesphere-u/minigrid-opt"
+Issues = "https://github.com/codesphere-u/minigrid-opt/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/minigrid_opt"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+mypy_path = "src"
+packages = ["minigrid_opt"]
